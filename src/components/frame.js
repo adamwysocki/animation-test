@@ -5,6 +5,7 @@ import { fadeIn, fadeOut } from "react-animations";
 const fadeInAnimation = keyframes`${fadeIn}`;
 const fadeOutAnimation = keyframes`${fadeOut}`;
 
+// represents an animation step. does a fadeIn and then a fadeOut
 class Frame extends Component {
   state = {
     animation: fadeInAnimation,

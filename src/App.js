@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import "./App.css";
 
 import Frame from "./components/Frame";
@@ -6,11 +6,14 @@ import TwitterIcon from "./components/TwitterIcon";
 import GithubIcon from "./components/GithubIcon";
 import EmailIcon from "./components/EmailIcon";
 
+// some CONT's for responsiveness
 const SMALL_WINDOW_WIDTH = 575;
 const MEDIUM_WINDOW_WIDTH = 768;
 
-const svgSizes = new Map([['small', "48"], ['medium', "64"], ['large', "96"]]);
+// some SVG size options for responsiveness
+const svgSizes = new Map([["small", "48"], ["medium", "64"], ["large", "96"]]);
 
+// these are the frames of the animation and some params
 const frames = [
   <Frame size="120px" interval="2" color="palevioletred">
     3
@@ -45,9 +48,11 @@ const frames = [
   <Frame size="30px" interval="14" color="dodgerblue">
     I promise not to rhyme too much!
   </Frame>,
-  <div style={{color: "dodgerblue"}}>
+  <div style={{ color: "dodgerblue" }}>
     Adam Wysocki
-    <div className="quote">"Software is the invisible writing that whispers the stories of possibility to our hardware." - Grady Booch</div>
+    <div className="quote">
+      "Software is the invisible writing that whispers the stories of possibility to our hardware." - Grady Booch
+    </div>
   </div>
 ];
 
@@ -57,25 +62,29 @@ class App extends React.Component {
     this.state = {
       step: 1,
       width: 0,
-      height: 0,
+      height: 0
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
- 
+
+  // setup a listener to handle resizes
   componentDidMount() {
     this.updateWindowDimensions();
-    window.addEventListener('resize', this.updateWindowDimensions);
+    window.addEventListener("resize", this.updateWindowDimensions);
   }
 
+  // reset the timer each time
   componentWillMount() {
     this.timer = setInterval(this.tick, 2000);
   }
 
+  // clean up
   componentWillUnmount() {
     clearInterval(this.timer);
-    window.removeEventListener('resize', this.updateWindowDimensions);
+    window.removeEventListener("resize", this.updateWindowDimensions);
   }
 
+  // the timer tick, if we're at the end of the frames kill it
   tick = () => {
     let nextStep = this.state.step + 1;
     this.setState({ step: nextStep });
@@ -84,20 +93,23 @@ class App extends React.Component {
     }
   };
 
+  // update sizes
   updateWindowDimensions() {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
+  // get the SVG icon size based on screen width
   calculateIconSize() {
-    if(this.state.width <= SMALL_WINDOW_WIDTH) {
-      return svgSizes.get('small');
-    } else if(this.state.width > SMALL_WINDOW_WIDTH && this.state.width <= MEDIUM_WINDOW_WIDTH) {
-      return svgSizes.get('medium');
+    if (this.state.width <= SMALL_WINDOW_WIDTH) {
+      return svgSizes.get("small");
+    } else if (this.state.width > SMALL_WINDOW_WIDTH && this.state.width <= MEDIUM_WINDOW_WIDTH) {
+      return svgSizes.get("medium");
     } else {
-      return svgSizes.get('large');
+      return svgSizes.get("large");
     }
   }
 
+  // still need to break this up into smaller components
   render() {
     let frame = frames[this.state.step - 1];
     const svgSize = this.calculateIconSize();
@@ -108,9 +120,24 @@ class App extends React.Component {
           <div className="frameContainer">{frame}</div>
         </div>
         <div className="container">
-            <div className="contactBox"><a href="https://www.twitter.com/theadamwysocki"><TwitterIcon size={svgSize} color={"cornflowerblue"}/><div>@theadamwysocki</div></a></div>
-            <div className="contactBox"><a href="https://github.com/adamwysocki"><GithubIcon size={svgSize} color={"cornflowerblue"}/><div>github.com/adamwysocki</div></a></div>
-            <div className="contactBox"><a href="mailto:adam@adamwysocki.me?subject=Please stop rhyming"><EmailIcon size={svgSize} color={"cornflowerblue"}/><div>adam@adamwysocki.me</div></a></div>
+          <div className="contactBox">
+            <a href="https://www.twitter.com/theadamwysocki">
+              <TwitterIcon size={svgSize} color={"cornflowerblue"} />
+              <div>@theadamwysocki</div>
+            </a>
+          </div>
+          <div className="contactBox">
+            <a href="https://github.com/adamwysocki">
+              <GithubIcon size={svgSize} color={"cornflowerblue"} />
+              <div>github.com/adamwysocki</div>
+            </a>
+          </div>
+          <div className="contactBox">
+            <a href="mailto:adam@adamwysocki.me?subject=Please stop rhyming">
+              <EmailIcon size={svgSize} color={"cornflowerblue"} />
+              <div>adam@adamwysocki.me</div>
+            </a>
+          </div>
         </div>
       </Fragment>
     );
