@@ -34,8 +34,9 @@ class Frame extends Component {
     const FrameDiv = styled.div`
       font-size: ${this.props.size};
       font-family: Anton;
-      color: cornflowerblue;
+      color: ${this.props.color || "cornflowerblue"};
       animation: ${interval} ${this.state.animation};
+      text-shadow: 1px 1px grey;
     `;
 
     return <FrameDiv>{this.props.children}</FrameDiv>;
