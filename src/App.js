@@ -1,101 +1,65 @@
 import React, { Component } from "react";
 import "./App.css";
 
-import styled, { keyframes } from "styled-components";
-import { bounce, shake, fadeInDownBig, lightSpeedIn, fadeIn } from "react-animations";
+import Frame from "./components/frame";
 
-const bounceAnimation = keyframes`${bounce}`;
-const shakeAnimation = keyframes`${shake}`;
-const fadeDownBigAnimation = keyframes`${fadeInDownBig}`;
-const fadeInAnimation = keyframes`${fadeIn}`;
-
-const DownDiv = styled.div`
-  font-family: Anton;
-  animation: 0.4s ${fadeDownBigAnimation};
-  color: cornflowerblue;
-`;
-
-const BouncyDiv = styled.div`
-  font-family: Anton;
-  animation: 1.2s ${bounceAnimation};
-  color: cornflowerblue;
-`;
-
-const ShakeDiv = styled.div`
-  margin-top: 1%;
-  font-family: Anton;
-  animation: 0.8s ${shakeAnimation};
-  color: cornflowerblue;
-`;
-
-const ThankYouDiv = styled.div`
-  font-family: Anton;
-  color: coral;
-  font-size: 42px;
-  animation: 4s ${fadeInAnimation};
-`;
-
-const titleDivStepDurations = [300, 1500, 1000];
+const frames = [
+  <Frame size="160px" interval="2">
+    3
+  </Frame>,
+  <Frame size="160px" interval="2">
+    2
+  </Frame>,
+  <Frame size="160px" interval="2">
+    1
+  </Frame>,
+  <Frame size="90px" interval="10">
+    Hi!
+  </Frame>,
+  <Frame size="60px" interval="10">
+    Thank you for stopping by
+  </Frame>,
+  <Frame size="60px" interval="10">
+    I like to write code
+  </Frame>,
+  <Frame size="120px" interval="4">
+    ES6
+  </Frame>,
+  <Frame size="120px" interval="4">
+    React
+  </Frame>,
+  <Frame size="120px" interval="4">
+    & Node
+  </Frame>
+];
 
 class App extends Component {
   state = {
-    titleDivStep: 1,
-    displayThankYouDiv: false
+    step: 1
   };
 
-  fireThankYouDivAnimation() {
-    setTimeout(() => {
-      this.setState({ displayThankYouDiv: true });
-    }, 1000);
+  componentWillMount() {
+    this.timer = setInterval(this.tick, 2000);
   }
 
-  fireNextTitleDivStep() {
-    setTimeout(() => {
-      let newTitleDivStep = this.state.titleDivStep + 1;
-      this.setState({ titleDivStep: newTitleDivStep }, () => {
-        if (this.state.titleDivStep < 3) {
-          this.fireNextTitleDivStep();
-        } else {
-          this.fireThankYouDivAnimation();
-        }
-      });
-    }, titleDivStepDurations[this.state.titleDivStep - 1]);
+  componentWillUnmount() {
+    clearInterval(this.timer);
   }
 
-  componentDidMount() {
-    this.fireNextTitleDivStep();
-  }
-
-  getTitleDiv(step) {
-    let animation = <DownDiv>HELLO</DownDiv>;
-    switch (step) {
-      case 1:
-        animation = <DownDiv>HELLO</DownDiv>;
-        break;
-      case 2:
-        animation = <BouncyDiv>HELLO</BouncyDiv>;
-        break;
-      case 3:
-        animation = <ShakeDiv>HELLO</ShakeDiv>;
-        break;
-      default:
-        animation = <BouncyDiv>HELLO</BouncyDiv>;
+  tick = () => {
+    let nextStep = this.state.step + 1;
+    this.setState({ step: nextStep });
+    if (nextStep > frames.length) {
+      clearInterval(this.timer);
     }
-    return animation;
-  }
+  };
 
   render() {
-    let titleDivToRender = this.getTitleDiv(this.state.titleDivStep);
-    let thankYouDivToRender = <div className="thankyou-placeholder">Thank you for stopping by!</div>;
-
-    if (this.state.displayThankYouDiv) {
-      thankYouDivToRender = <ThankYouDiv>Thank you for stopping by</ThankYouDiv>;
-    }
+    let frame = frames[this.state.step - 1];
 
     return (
       <div className="App">
-        <div className="bounce-wrapper">{titleDivToRender}</div>
-        <div>{thankYouDivToRender}</div>
+        <div className="bounce-wrapper">{frame}</div>
       </div>
     );
   }
