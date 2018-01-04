@@ -1,0 +1,21 @@
+html,
+body {
+  height: 100vh;
+}
+
+.App {
+  text-align: center;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bounce-wrapper {
+  font-size: 100px;
+}
+
+.thankyou-placeholder {
+  font-size: 42px;
+  color: white;
+}
