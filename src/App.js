@@ -50,11 +50,11 @@ const frames = [
   </Frame>,
   <div style={{ color: "dodgerblue" }}>
     Adam Wysocki
-    <div className="quote">
-      "Software is the invisible writing that whispers the stories of possibility to our hardware." - Grady Booch
-    </div>
+    <div className="quote">"Controlling complexity is the essence of computer programming." - Brian W. Kernighan</div>
   </div>
 ];
+
+//"Software is the invisible writing that whispers the stories of possibility to our hardware." - Grady Booch
 
 class App extends React.Component {
   constructor(props) {
