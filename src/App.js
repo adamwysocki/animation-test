@@ -117,32 +117,38 @@ class App extends React.Component {
             <ul>
               <li>Software Engineering Manager</li>
               <li>25+ years experience</li>
-              <li>Node.js/React/Ember</li>
+              <li>Node/React/ECMAScript</li>
               <li>MySql/Mongo/Postgresql</li>
               <li>Jest/Mocha/Chai</li>
               <li>Flow/Typescript</li>
+              <li>Eslint/Prettier</li>
+              <li>Vscode/Atom</li>
             </ul>
           </div>
           <div>
             <h1>Personal</h1>
             <ul>
               <li>Husband/Dad</li>
-              <li>Marathoner</li>
-              <li>Triathlete</li>
-              <li>Vegan</li>
-              <li>Ironist</li>
-              <li>Born in New Jersey</li>
+              <li>Runner/Triathlete</li>
+              <li>&#x2618; Plant Based/Clean Eating</li>
+              <li>Empathy > Apathy</li>
+              <li>Irony/Sarcasim Artisan</li>
+              <li>Only vice is coffee &#x2668;</li>
+              <li>Remote worker</li>
+              <li>from Jersey, nuff said?</li>
             </ul>
           </div>
           <div>
-            <h1>Odd</h1>
+            <h1>Abstract</h1>
             <ul>
               <li>Obsessive movie quoter</li>
               <li>Miley Cyrus super fan</li>
-              <li>Former US Marine</li>
-              <li>Wrote a video game in 1984</li>
-              <li>Thinks the Matrix is probably real</li>
-              <li>Believes Elon Musk is actually an AI</li>
+              <li>USMC alum</li>
+              <li>&#9829; papayawhip</li>
+              <li>thinks the Matrix is probably real</li>
+              <li>not a fan of Array.smoosh</li>
+              <li>believes Elon Musk is actually an AI</li>
+              <li>slack emoji wizard</li>
             </ul>
           </div>
         </div>
