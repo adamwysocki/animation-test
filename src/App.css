@@ -2,6 +2,7 @@ html,
 body {
   height: 100vh;
   background-color: papayawhip;
+  font-family: sans-serif;
 }
 
 a {
@@ -9,12 +10,18 @@ a {
   color: cornflowerblue;
 }
 
-.App {
+.outerWrapper {
   text-align: center;
-  position: fixed;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.topContainer {
+  text-align: center;
+  padding: 90px 40px 60px 40px;
 }
 
 .frameContainer {
@@ -22,19 +29,51 @@ a {
   min-height: 40%;
 }
 
-.container {
+.middleContainer {
+  width: 80%;
+  margin: auto;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  color: cornflowerblue;
+  border-top: 1px solid cornflowerblue;
+  border-bottom: 1px solid cornflowerblue;
+}
+
+.middleContainer h1 {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.middleContainer ul {
+  list-style: none;
+  padding: 0;
+  min-width: 300px;
+}
+
+.middleContainer li {
+  line-height: 1.2;
+  font-size: 14px;
+  text-align: center;
+}
+
+.bottomContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  position: absolute;
-  bottom: 0;
   text-align: center;
   width: 100%;
-  margin-bottom: 40px;
+  margin: 30px 0;
+  position: relative;
+  bottom: 0;
 }
 
 .contactBox {
-  padding: 40px 100px;
   font-size: 18px;
 }
 
@@ -44,20 +83,47 @@ a {
 }
 
 @media only screen and (max-width: 575px) {
+  .bottomContainer {
+    position: relative;
+    bottom: 0;
+  }
+
+  .topContainer {
+    padding: 50px 40px 60px 40px;
+  }
+
   .contactBox {
-    padding: 0 20px;
+    padding: 10px 10px;
     font-size: 0px;
   }
 
   .frameContainer {
-    font-size: 38px;
-    min-width: 400px;
+    font-size: 32px;
+  }
+
+  .middleContainer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .middleContainer h1 {
+    font-size: 24px;
+    margin-bottom: 0;
+  }
+
+  .middleContainer ul {
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  .middleContainer ul li {
+    font-size: 14px;
+    line-height: 1.4;
   }
 
   .quote {
     margin-top: 5px;
     font-size: 10px;
-    padding: 5px 50px;
   }
 }
 
@@ -69,24 +135,21 @@ a {
 
   .frameContainer {
     font-size: 68px;
-    min-width: 700px;
   }
 
   .quote {
     margin-top: 5px;
     font-size: 12px;
-    padding: 5px 50px;
   }
 }
 
 @media only screen and (min-width: 768px) {
   .contactBox {
-    padding: 40px 60px;
+    padding: 20px 40px;
     font-size: 12px;
   }
 
   .frameContainer {
     font-size: 100px;
-    min-width: 700px;
   }
 }

@@ -5,13 +5,15 @@ import Frame from "./components/Frame";
 import TwitterIcon from "./components/TwitterIcon";
 import GithubIcon from "./components/GithubIcon";
 import EmailIcon from "./components/EmailIcon";
+import BlogIcon from "./components/BlogIcon";
+import StravaIcon from "./components/StravaIcon";
 
 // some CONT's for responsiveness
 const SMALL_WINDOW_WIDTH = 575;
 const MEDIUM_WINDOW_WIDTH = 768;
 
 // some SVG size options for responsiveness
-const svgSizes = new Map([["small", "48"], ["medium", "64"], ["large", "96"]]);
+const svgSizes = new Map([["small", "32"], ["medium", "48"], ["large", "64"]]);
 
 // these are the frames of the animation and some params
 const frames = [
@@ -53,14 +55,12 @@ const frames = [
     <div className="quote">"Controlling complexity is the essence of computer programming." - Brian W. Kernighan</div>
   </div>
 ];
-
 //"Software is the invisible writing that whispers the stories of possibility to our hardware." - Grady Booch
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 1,
       width: 0,
       height: 0
     };
@@ -73,25 +73,10 @@ class App extends React.Component {
     window.addEventListener("resize", this.updateWindowDimensions);
   }
 
-  // reset the timer each time
-  componentWillMount() {
-    this.timer = setInterval(this.tick, 2000);
-  }
-
   // clean up
   componentWillUnmount() {
-    clearInterval(this.timer);
     window.removeEventListener("resize", this.updateWindowDimensions);
   }
-
-  // the timer tick, if we're at the end of the frames kill it
-  tick = () => {
-    let nextStep = this.state.step + 1;
-    this.setState({ step: nextStep });
-    if (nextStep >= frames.length) {
-      clearInterval(this.timer);
-    }
-  };
 
   // update sizes
   updateWindowDimensions() {
@@ -111,15 +96,57 @@ class App extends React.Component {
 
   // still need to break this up into smaller components
   render() {
-    let frame = frames[this.state.step - 1];
+    //let frame = frames[11];
     const svgSize = this.calculateIconSize();
 
     return (
-      <Fragment>
-        <div className="App">
-          <div className="frameContainer">{frame}</div>
+      <div className="outerWrapper">
+        <div className="topContainer">
+          <div className="frameContainer">
+            <div style={{ color: "dodgerblue" }}>
+              Adam Wysocki
+              <div className="quote">
+                "Controlling complexity is the essence of computer programming." - Brian W. Kernighan
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="container">
+        <div className="middleContainer">
+          <div>
+            <h1>Professional</h1>
+            <ul>
+              <li>Software Engineering Manager</li>
+              <li>25+ years experience</li>
+              <li>Node.js/React/Ember</li>
+              <li>MySql/Mongo/Postgresql</li>
+              <li>Jest/Mocha/Chai</li>
+              <li>Flow/Typescript</li>
+            </ul>
+          </div>
+          <div>
+            <h1>Personal</h1>
+            <ul>
+              <li>Husband/Dad</li>
+              <li>Marathoner</li>
+              <li>Triathlete</li>
+              <li>Vegan</li>
+              <li>Ironist</li>
+              <li>Born in New Jersey</li>
+            </ul>
+          </div>
+          <div>
+            <h1>Odd</h1>
+            <ul>
+              <li>Obsessive movie quoter</li>
+              <li>Miley Cyrus super fan</li>
+              <li>Former US Marine</li>
+              <li>Wrote a video game in 1984</li>
+              <li>Thinks the Matrix is probably real</li>
+              <li>Believes Elon Musk is actually an AI</li>
+            </ul>
+          </div>
+        </div>
+        <div className="bottomContainer">
           <div className="contactBox">
             <a href="https://www.twitter.com/theadamwysocki">
               <TwitterIcon size={svgSize} color={"cornflowerblue"} />
@@ -129,7 +156,7 @@ class App extends React.Component {
           <div className="contactBox">
             <a href="https://github.com/adamwysocki">
               <GithubIcon size={svgSize} color={"cornflowerblue"} />
-              <div>github.com/adamwysocki</div>
+              <div>github/adamwysocki</div>
             </a>
           </div>
           <div className="contactBox">
@@ -138,8 +165,20 @@ class App extends React.Component {
               <div>adam@adamwysocki.me</div>
             </a>
           </div>
+          <div className="contactBox">
+            <a href="https://medium.com/@theadamwysocki">
+              <BlogIcon size={svgSize} color={"cornflowerblue"} />
+              <div>medium/@theadamwysocki</div>
+            </a>
+          </div>
+          <div className="contactBox">
+            <a href="https://www.strava.com/athletes/adamwysocki">
+              <StravaIcon size={svgSize} color={"cornflowerblue"} />
+              <div>strava/adamwysocki</div>
+            </a>
+          </div>
         </div>
-      </Fragment>
+      </div>
     );
   }
 }
